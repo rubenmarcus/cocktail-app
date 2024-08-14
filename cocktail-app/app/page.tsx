@@ -1,56 +1,22 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
+import { fetchDrinks } from "../data/api";
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import { DrinkCard } from "@/components/drinkcard";
+import { ROUTES } from "@/config/api";
 
-export default function Home() {
+export default async function Home() {
+  const { drinks } = await fetchDrinks(
+    ROUTES.SEARCH.COCKTAIL_BY_FIRST_LETTER,
+    "a",
+  );
+
+  console.log(drinks.length, drinks);
+
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-lg text-center justify-center">
-        <h1 className={title()}>Make&nbsp;</h1>
-        <h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-        <br />
-        <h1 className={title()}>
-          websites regardless of your design experience.
-        </h1>
-        <h2 className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
-        </h2>
-      </div>
-
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
+    <section className=" columns-5 items-center justify-center gap-4 py-8 md:py-10">
+      {drinks &&
+        drinks?.map((drink) => {
+          return <DrinkCard drink={drink} />;
+        })}
     </section>
   );
 }
