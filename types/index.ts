@@ -70,3 +70,7 @@ export type Ingredient = {
 export type Ingredients = {
   ingredients: Ingredient[];
 };
+
+export type PageParams = {
+  params: { id: string };
+};

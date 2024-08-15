@@ -1,7 +1,7 @@
 "use client";
 
 import { Image } from "@nextui-org/image";
-import { Card, CardBody, CardFooter } from "@nextui-org/card";
+import { Card, CardFooter } from "@nextui-org/card";
 import Link from "next/link";
 
 import { title } from "@/components/primitives";
@@ -49,7 +49,7 @@ export const DrinkPageComponent = ({ drink }: { drink: Drink }) => {
     drink.strMeasure15,
   ].filter((measure) => measure !== null);
 
-  console.log(drink);
+  const formatItemName = drink.strGlass.replace(/\./g, "").replace(/\s+/g, "-");
 
   return (
     <section className="flex gap-10">
@@ -58,8 +58,11 @@ export const DrinkPageComponent = ({ drink }: { drink: Drink }) => {
       </div>
       <div className="w-2/3">
         <h1 className={title()}>{drink.strDrink}</h1>
-        <p className="mt-5">Glass: {drink.strGlass} </p>
-        <h2 className="w-full my-10">Ingredients</h2>
+        <p className="mt-5">
+          <b>Glass:</b>{" "}
+          <Link href={`/browse/glass/${formatItemName}`}>{drink.strGlass}</Link>
+        </p>
+        <h2 className="w-full my-10 font-bold">Ingredients</h2>
         <div className="flex gap-4 wrap">
           {ingredients &&
             ingredients.map((ingredient, index) => {
@@ -70,18 +73,27 @@ export const DrinkPageComponent = ({ drink }: { drink: Drink }) => {
                   key={ingredient}
                   href={`/ingredient/${formattedIngredient}`}
                 >
-                  <Card isPressable className="mb-4" shadow="sm">
-                    <CardBody className="overflow-visible p-0">
-                      <Image
-                        isZoomed
-                        src={`https://www.thecocktaildb.com/images/ingredients/${ingredient}-Medium.png`}
-                        width={200}
-                      />
-                    </CardBody>
-                    <CardFooter className="text-small flex-wrap flex ">
-                      <h1>
+                  <Card
+                    key={drink.idDrink}
+                    isFooterBlurred
+                    isPressable
+                    className="border-none mb-4 h-[120px] w-[120px]"
+                    radius="lg"
+                    shadow="sm"
+                  >
+                    <Image
+                      isZoomed
+                      alt={drink.strDrink}
+                      className="w-[120px] object-cover h-[120px]"
+                      radius="lg"
+                      shadow="sm"
+                      src={`https://www.thecocktaildb.com/images/ingredients/${ingredient}-Medium.png`}
+                      width="100%"
+                    />
+                    <CardFooter className="justify-center before:bg-black/90 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-large ml-1 z-10">
+                      <p className="text-tiny text-center font-bold text-white/80">
                         {measures[index]} {ingredient}
-                      </h1>
+                      </p>
                     </CardFooter>
                   </Card>
                 </Link>
@@ -90,7 +102,7 @@ export const DrinkPageComponent = ({ drink }: { drink: Drink }) => {
         </div>
         <div>
           {" "}
-          <h2 className="w-full my-10">Instructions</h2>
+          <h2 className="w-full my-10 font-bold">Instructions</h2>
           <p>{drink.strInstructions}</p>
         </div>
       </div>

@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { Image } from "@nextui-org/image";
-import { Card, CardBody, CardFooter } from "@nextui-org/card";
+
+import { DrinkCard } from "./drinkcard";
 
 import { Drink, Ingredient } from "@/types";
 import { title } from "@/components/primitives";
@@ -14,9 +14,6 @@ export const IngredientPageComponent = ({
   drinks: Drink[];
   ingredient: Ingredient;
 }) => {
-  console.log(drinks, "drinks");
-  console.log(ingredient, "ingridient");
-
   return (
     <section className="flex gap-10">
       <div className="w-1/3">
@@ -41,23 +38,7 @@ export const IngredientPageComponent = ({
                 .replace(/\./g, "")
                 .replace(/\s+/g, "-");
 
-              return (
-                <Link
-                  key={drinkName}
-                  href={`/drink/${drink.idDrink}-${drinkName}`}
-                >
-                  <Card isPressable className="mb-4 max-w-52" shadow="sm">
-                    <CardBody className="overflow-visible p-0">
-                      <Image isZoomed src={drink.strDrinkThumb} width={200} />
-                    </CardBody>
-                    <CardFooter className="text-small flex-wrap flex ">
-                      <p className="break-words	block text-xs h-auto w-full">
-                        {drink.strDrink}
-                      </p>
-                    </CardFooter>
-                  </Card>
-                </Link>
-              );
+              return <DrinkCard key={drinkName} drink={drink} />;
             })}
         </div>
         <div>

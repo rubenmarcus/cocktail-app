@@ -5,7 +5,7 @@ export const fetchDrinks = async (route: string, param?: string) => {
     const url = param
       ? `${COCKTAIL_API}${route}${param}`
       : `${COCKTAIL_API}${route}`;
-    const response = await fetch(url);
+    const response = await fetch(url, { cache: "force-cache" });
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

@@ -3,13 +3,9 @@
 import { Select, SelectItem } from "@nextui-org/select";
 
 export const Filters = ({ type, items, label }) => {
-  console.log(items, "items");
-
   return (
     <Select className="max-w-xs" label={label} size="sm" variant="underlined">
       {items.map((item) => {
-        console.log(item, type, "item");
-
         const itemName =
           type == "glasses"
             ? item.strGlass
