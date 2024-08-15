@@ -9,11 +9,12 @@ export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
   const id = params.id.replace(/-/g, " ");
+  const decodedDirTitle = decodeURIComponent(id);
 
   return {
-    title: id,
+    title: decodedDirTitle,
     openGraph: {
-      title: id,
+      title: decodedDirTitle,
     },
   };
 }

@@ -10,12 +10,16 @@ export const DrinkCatalog = ({
   drinks: Drink[];
   dirTitle: string;
 }) => {
+  const decodedDirTitle = decodeURIComponent(dirTitle);
+
   return (
     <>
       <div className="flex flex-wrap w-full items-center">
-        <h1 className={`${title()} w-full md:w-2/5 lg:w-4/5`}>{dirTitle}</h1>
+        <h1 className={`${title()} w-full md:w-2/5 lg:w-4/5`}>
+          {decodedDirTitle}
+        </h1>
         <div className="w-full text-left mt-2 md:mt-0 md:text-right md:w-1/5">
-          <b>{drinks.length}</b> {drinks.length > 1 ? "drinks" : "drink"}
+          <b>{drinks.length}</b> {drinks.length > 1 ? "drinks " : "drink "}
           founded
         </div>
       </div>
