@@ -1,9 +1,10 @@
 import { fetchDrinks } from "../data/api";
 
-import { BrowseFilter } from "@/components/browsefilter";
 import { DrinkCard } from "@/components/drinkcard";
+import { BrowseFilter } from "@/components/browsefilter";
 import { title } from "@/components/primitives";
 import { ROUTES } from "@/config/api";
+import { Drink } from "@/types";
 
 export default async function Home() {
   const { drinks } = await fetchDrinks(
@@ -15,13 +16,11 @@ export default async function Home() {
     <>
       <h1 className={title()}>Drinks Directory</h1>
       <h2 className="my-4">filtered by letter: A</h2>
-
       <BrowseFilter drinks={drinks} id={"a"} />
-
-      <section className=" columns-5 items-center justify-center gap-4 py-8 md:py-10">
+      <section className="grid grid-cols-5 gap-4 py-8 md:py-10">
         {drinks &&
-          drinks?.map((drink) => {
-            return <DrinkCard drink={drink} />;
+          drinks?.map((drink: Drink) => {
+            return <DrinkCard key={drink.strDrink} drink={drink} />;
           })}
       </section>
     </>
