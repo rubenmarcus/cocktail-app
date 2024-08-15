@@ -2,7 +2,9 @@
 
 import { Select, SelectItem } from "@nextui-org/select";
 
-export const Filters = ({ type, items, label }) => {
+import { FilterTypes } from "@/types";
+
+export const Filters = ({ type, items, label }: FilterTypes) => {
   return (
     <Select className="max-w-xs" label={label} size="sm" variant="underlined">
       {items.map((item) => {
@@ -15,20 +17,27 @@ export const Filters = ({ type, items, label }) => {
                 ? item.strIngredient1
                 : null;
 
-        const formatItemName = itemName.replace(/\./g, "").replace(/\s+/g, "-");
-        const encodedItemName = formatItemName.includes("/")
-          ? encodeURIComponent(formatItemName)
-          : formatItemName;
+        const formatItemName =
+          itemName && itemName.replace(/\./g, "").replace(/\s+/g, "-");
 
-        return (
-          <SelectItem
-            key={itemName}
-            className="text-xs"
-            href={`/browse/${type}/${encodedItemName}`}
-          >
-            {itemName}
-          </SelectItem>
-        );
+        const encodedItemName =
+          formatItemName && formatItemName.includes("/")
+            ? encodeURIComponent(formatItemName)
+            : formatItemName;
+
+        if (itemName) {
+          return (
+            <SelectItem
+              key={itemName}
+              className="text-xs"
+              href={`/browse/${type}/${encodedItemName}`}
+            >
+              {itemName}
+            </SelectItem>
+          );
+        }
+
+        return <></>;
       })}
     </Select>
   );

@@ -74,3 +74,15 @@ export type Ingredients = {
 export type PageParams = {
   params: { id: string };
 };
+
+export type FilterItems = {
+  strGlass?: string;
+  strCategory?: string;
+  strIngredient1?: string;
+};
+
+export type FilterTypes = {
+  type: "glasses" | "category" | "ingredient";
+  label: string;
+  items: FilterItems[];
+};
