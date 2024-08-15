@@ -15,14 +15,14 @@ export const IngredientPageComponent = ({
   ingredient: Ingredient;
 }) => {
   return (
-    <section className="flex gap-10">
-      <div className="w-1/3">
+    <section className="md:flex w-full md:gap-10">
+      <div className="w-full md:w-1/3">
         <Image
           isZoomed
           src={`https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient}-Medium.png`}
         />
       </div>
-      <div className="w-2/3">
+      <div className="w-full md:w-2/3 mt-10 md:mt-0">
         <h1 className={title()}>{ingredient.strIngredient}</h1>
         <p className="mt-5">
           <b>Type:</b> {ingredient.strType}

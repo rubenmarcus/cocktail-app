@@ -52,18 +52,18 @@ export const DrinkPageComponent = ({ drink }: { drink: Drink }) => {
   const formatItemName = drink.strGlass.replace(/\./g, "").replace(/\s+/g, "-");
 
   return (
-    <section className="flex gap-10">
-      <div className="w-1/3">
+    <section className="md:flex w-full md:gap-10">
+      <div className="w-full md:w-1/3">
         <Image isZoomed src={drink.strDrinkThumb} />
       </div>
-      <div className="w-2/3">
+      <div className="w-full md:w-2/3 mt-10 md:mt-0">
         <h1 className={title()}>{drink.strDrink}</h1>
         <p className="mt-5">
           <b>Glass:</b>{" "}
           <Link href={`/browse/glass/${formatItemName}`}>{drink.strGlass}</Link>
         </p>
         <h2 className="w-full my-10 font-bold">Ingredients</h2>
-        <div className="flex gap-4 wrap">
+        <div className="flex gap-4 flex-wrap">
           {ingredients &&
             ingredients.map((ingredient, index) => {
               const formattedIngredient = ingredient.replace(/\s+/g, "-");

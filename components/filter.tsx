@@ -6,7 +6,12 @@ import { FilterTypes } from "@/types";
 
 export const Filters = ({ type, items, label }: FilterTypes) => {
   return (
-    <Select className="max-w-xs" label={label} size="sm" variant="underlined">
+    <Select
+      className="w-full md:max-w-xs"
+      label={label}
+      size="sm"
+      variant="underlined"
+    >
       {items.map((item) => {
         const itemName =
           type == "glasses"

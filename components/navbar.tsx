@@ -5,6 +5,8 @@ import {
   NavbarMenu,
   NavbarBrand,
   NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenuItem,
 } from "@nextui-org/navbar";
 import { Kbd } from "@nextui-org/kbd";
 import { Input } from "@nextui-org/input";
@@ -39,7 +41,7 @@ export const Navbar = ({ categories, ingredients, glass }: NavBarTypes) => {
         input: "text-sm",
       }}
       endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
+        <Kbd className=" lg:inline-block" keys={["command"]}>
           K
         </Kbd>
       }
@@ -81,7 +83,10 @@ export const Navbar = ({ categories, ingredients, glass }: NavBarTypes) => {
               <p className="font-bold text-inherit">cocktail app</p>
             </NextLink>
           </NavbarBrand>
-          <ul className="hidden lg:flex gap-4 justify-start ml-10">
+          <NavbarContent className="sm:hidden" justify="end">
+            <NavbarMenuToggle />
+          </NavbarContent>
+          <ul className="hidden sm:flex gap-4 justify-start ml-10">
             {siteConfig.navItems.map((item) => (
               <NavbarItem key={item.href}>
                 <NextLink
@@ -103,13 +108,25 @@ export const Navbar = ({ categories, ingredients, glass }: NavBarTypes) => {
           className="hidden sm:flex basis-1/5 sm:basis-full"
           justify="end"
         >
-          <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-          <NavbarItem className="hidden md:flex" />
+          <NavbarItem className=" lg:flex">{searchInput}</NavbarItem>
+          <NavbarItem className=" md:flex" />
         </NavbarContent>
 
         <NavbarMenu>{searchInput}</NavbarMenu>
+
+        <NavbarMenu>
+          {siteConfig.navItems.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`} className="my-1">
+              <NextLink className="w-full" href={item.href}>
+                {item.label}
+              </NextLink>
+            </NavbarMenuItem>
+          ))}
+
+          <div className="mt-2">{searchInput}</div>
+        </NavbarMenu>
       </NextUINavbar>
-      <div className="w-full gap-4 flex bg-zinc-850 justify-center items-center py-3">
+      <div className="w-full md:gap-4 md:flex bg-zinc-850 md:justify-center md:items-center px-4 lg:px-0 py-3">
         <p>Filter Drinks:</p>
         <Filters
           items={categories.drinks}

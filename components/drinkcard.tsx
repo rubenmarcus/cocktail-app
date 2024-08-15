@@ -10,7 +10,7 @@ export const DrinkCard = ({ drink }: { drink: Drink }) => {
   const drinkName = drink.strDrink.replace(/\./g, "").replace(/\s+/g, "-");
 
   return (
-    <Link href={`/drink/${drink.idDrink}-${drinkName}`}>
+    <Link className="m-auto" href={`/drink/${drink.idDrink}-${drinkName}`}>
       <Card
         key={drink.idDrink}
         isFooterBlurred
