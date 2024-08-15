@@ -64,7 +64,7 @@ export type Ingredient = {
   strAlcohol: "No" | "Yes";
   strDescription: NullableString;
   strIngredient: string;
-  strTyp: string;
+  strType: string;
 };
 
 export type Ingredients = {

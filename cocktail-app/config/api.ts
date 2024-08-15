@@ -3,7 +3,6 @@ export const COCKTAIL_API = "https://www.thecocktaildb.com/api/json/v1/1/";
 export const ROUTES = {
   FILTER: {
     INGREDIENT: "filter.php?i=",
-    MULTI_INGREDIENT: "filter.php?i=",
     ALCOHOLIC: "filter.php?a=",
     CATEGORY: "filter.php?c=",
     GLASS: "filter.php?g=",

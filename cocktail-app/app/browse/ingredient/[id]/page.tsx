@@ -1,15 +1,12 @@
-import { fetchDrinks } from "../data/api";
-
 import { BrowseFilter } from "@/components/browsefilter";
 import { DrinkCard } from "@/components/drinkcard";
 import { Filters } from "@/components/filter";
 import { ROUTES } from "@/config/api";
+import { fetchDrinks } from "@/data/api";
 
-export default async function Home() {
-  const { drinks } = await fetchDrinks(
-    ROUTES.SEARCH.COCKTAIL_BY_FIRST_LETTER,
-    "a",
-  );
+export default async function Ingredient({ params }) {
+  const id = params.id.replace(/-/g, " ");
+  const { drinks } = await fetchDrinks(ROUTES.FILTER.INGREDIENT, id);
 
   const categories = await fetchDrinks(ROUTES.LIST.CATEGORY);
   const glass = await fetchDrinks(ROUTES.LIST.GLASS);

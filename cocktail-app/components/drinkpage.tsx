@@ -8,7 +8,7 @@ import { title } from "@/components/primitives";
 import { Drink } from "@/types";
 
 export const DrinkPageComponent = ({ drink }: { drink: Drink }) => {
-  const ingredients = [
+  const ingredients: string[] = [
     drink.strIngredient1,
     drink.strIngredient2,
     drink.strIngredient3,
@@ -24,7 +24,7 @@ export const DrinkPageComponent = ({ drink }: { drink: Drink }) => {
     drink.strIngredient13,
     drink.strIngredient14,
     drink.strIngredient15,
-  ].filter((ingredient) => ingredient !== null);
+  ].filter((ingredient): ingredient is string => ingredient !== null);
 
   const measures = [
     drink.strMeasure1,
@@ -63,8 +63,13 @@ export const DrinkPageComponent = ({ drink }: { drink: Drink }) => {
         <div className="flex gap-4 wrap">
           {ingredients &&
             ingredients.map((ingredient, index) => {
+              const formattedIngredient = ingredient.replace(/\s+/g, "-");
+
               return (
-                <Link key={ingredient} href={`/ingredient/${ingredient}`}>
+                <Link
+                  key={ingredient}
+                  href={`/ingredient/${formattedIngredient}`}
+                >
                   <Card isPressable className="mb-4" shadow="sm">
                     <CardBody className="overflow-visible p-0">
                       <Image
