@@ -19,8 +19,9 @@ import { Filters } from "./filter";
 
 import { siteConfig } from "@/config/site";
 import { SearchIcon } from "@/components/icons";
+import { NavBarTypes } from "@/types";
 
-export const Navbar = ({ categories, ingredients, glass }) => {
+export const Navbar = ({ categories, ingredients, glass }: NavBarTypes) => {
   const [searchInputVal, setSearchInput] = useState<null | string>(null);
   const router = useRouter();
 

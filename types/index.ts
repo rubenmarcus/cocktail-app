@@ -86,3 +86,11 @@ export type FilterTypes = {
   label: string;
   items: FilterItems[];
 };
+
+export type DrinksNavBar = { drinks: FilterItems[] };
+
+export type NavBarTypes = {
+  ingredients: DrinksNavBar;
+  categories: DrinksNavBar;
+  glass: DrinksNavBar;
+};
