@@ -34,10 +34,14 @@ export const BrowseFilter = ({
   };
 
   return (
-    <div className="w-full  flex align-center items-center text-uppercase gap-2">
-      <div className="w-1/5"> Founded {drinks.length} Drinks </div>
-      <div className="w-1/5 flex justify-end">Filter by Letter: </div>
-      <div className="w-3/5">
+    <div className="w-full  flex  flex-wrap align-center items-center text-uppercase gap-2">
+      <div className="w-full md:w-1/5">
+        {drinks.length} {drinks.length > 1 ? "drinks" : "drink"} founded
+      </div>
+      <div className="w-full md:w-1/5 flex md:justify-end">
+        Filter by Letter:
+      </div>
+      <div className="w-full md:w-3/5">
         <LinksAlphabet />
       </div>
     </div>

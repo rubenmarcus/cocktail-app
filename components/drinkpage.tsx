@@ -101,7 +101,6 @@ export const DrinkPageComponent = ({ drink }: { drink: Drink }) => {
             })}
         </div>
         <div>
-          {" "}
           <h2 className="w-full my-10 font-bold">Instructions</h2>
           <p>{drink.strInstructions}</p>
         </div>
