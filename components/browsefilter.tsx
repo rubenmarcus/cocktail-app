@@ -14,19 +14,23 @@ export const BrowseFilter = ({
   );
 
   const LinksAlphabet = () => {
-    return browseLetters.map((letter) => (
-      <Link
-        key={letter}
-        className={
-          letter == id
-            ? `uppercase bg-primary text-white p-2 rounded`
-            : `uppercase p-2 rounded`
-        }
-        href={`/browse/${letter}`}
-      >
-        {letter}
-      </Link>
-    ));
+    return (
+      <>
+        {browseLetters.map((letter) => (
+          <Link
+            key={letter}
+            className={
+              letter == id
+                ? `uppercase bg-primary text-white p-2 rounded`
+                : `uppercase p-2 rounded`
+            }
+            href={`/browse/${letter}`}
+          >
+            {letter}
+          </Link>
+        ))}
+      </>
+    );
   };
 
   return (
