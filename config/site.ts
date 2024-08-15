@@ -16,17 +16,5 @@ export const siteConfig = {
       label: "Non Alcoholic Drinks",
       href: "/non-alcoholic",
     },
-    {
-      label: "Categories",
-      href: "/browse/categories",
-    },
-    {
-      label: "Ingredients",
-      href: "/browse/ingredients",
-    },
-    {
-      label: "Glasses",
-      href: "/browse/glasses",
-    },
   ],
 };
