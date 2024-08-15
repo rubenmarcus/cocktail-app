@@ -12,10 +12,10 @@ export async function generateMetadata({
   const { drinks } = await fetchDrinks(ROUTES.LOOKUP.COCKTAIL_BY_ID, id);
 
   return {
-    title: `Cocktail App - ${id}`,
+    title: drinks[0].strDrink,
     openGraph: {
-      title: `Cocktail App - ${id}`,
-      description: drinks[0].strDescription || id,
+      title: drinks[0].strDrink,
+      description: drinks[0].strDescription || drinks[0].strDrink,
       images: [
         {
           type: "image/png",
@@ -24,8 +24,8 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      title: `Cocktail App - ${id}`,
-      description: drinks[0].strDescription || id,
+      title: drinks[0].strDrink,
+      description: drinks[0].strDescription || drinks[0].strDrink,
       card: "summary_large_image",
       images: drinks[0].strDrinkThumb,
     },

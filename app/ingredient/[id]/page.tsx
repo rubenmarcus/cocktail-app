@@ -15,10 +15,11 @@ export async function generateMetadata({
   );
 
   return {
-    title: `Cocktail App - ${id}`,
+    title: ingredients[0].strIngredient,
     openGraph: {
-      title: `Cocktail App - ${id}`,
-      description: ingredients[0].strDescription || id,
+      title: ingredients[0].strIngredient,
+      description:
+        ingredients[0].strDescription || ingredients[0].strIngredient,
       images: [
         {
           type: "image/png",
@@ -27,8 +28,9 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      title: `Cocktail App - ${id}`,
-      description: ingredients[0].strDescription || id,
+      title: ingredients[0].strIngredient,
+      description:
+        ingredients[0].strDescription || ingredients[0].strIngredient,
       card: "summary_large_image",
       images: `https://www.thecocktaildb.com/images/ingredients/${ingredients[0].strIngredient}-Medium.png`,
     },
